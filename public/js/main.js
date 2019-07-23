@@ -9,7 +9,10 @@ container.setAttribute('class', 'container');
 app.appendChild(container);
 
 var request = new XMLHttpRequest();
-request.open('GET', 'https://api.exchangeratesapi.io/latest?base=USD', true);
+var url='https://api.exchangeratesapi.io/latest?base=INR';
+var basevalue=document.getElementsByName('basevalue').value;
+alert(basevalue);
+request.open('GET', url, true);
 request.onload = function () {
 
   // Begin accessing JSON data here
@@ -49,7 +52,7 @@ request.onload = function () {
 
 request.send();
 
-document.addEventListener('DOMContentLoaded', function() {
+/*document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
     var instances = M.FormSelect.init(elems, options);
   });
@@ -84,4 +87,4 @@ async function init() {
       });
     });
   }
-}
+}*/
