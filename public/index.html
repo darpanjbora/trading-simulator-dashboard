@@ -2,23 +2,45 @@
 <html>
 
 <head>
+        
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>FX-Trading-Simulator</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" /> -->
 </head>
 
 <body>
     <div class="logo-container">
         <img src="assets/logo.svg">
+        <form>
+                <input type="search" name="basevalue" id="basevalue">
+                <button type="button" onclick="temp()">search</button>
+        </form>
+            
     </div>
-    <div>
-        <h1>Hello!</h1>
-        <p>This is a template for the FX-Trading Simulator.</p>
+    <div id="base" class="card">
+        <h1>The selected base currency</h1>
+        <h3 id='heading'></h3>
     </div>
-    <script src="js/main.js"></script>
+
+    <div id="root">
+        <div class="container" id="cont">
+            <div class="card" id="card">
+                <h1 id="card-head"></h1>
+                <p id="card-content"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+   
+    </script>
+    <script src="I:\Project\trading-simulator-dashboard-price-screen\public\jquery.js"></script>
+    <script src="I:\Project\trading-simulator-dashboard-price-screen\public\js\main.js"></script>
+    <script type="text/javascript" src="I:\Project\trading-simulator-dashboard-price-screen\public\js\materialize.min.js"></script>
 </body>
 
 </html>
