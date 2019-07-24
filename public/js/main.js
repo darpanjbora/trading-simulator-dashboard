@@ -1,17 +1,26 @@
 // uncomment line below to register offline cache service worker 
 // navigator.serviceWorker.register('../serviceworker.js');
 
+var input="";
+var url="";
+
+function temp(){
+input=document.getElementById("basevalue").value; url='https://api.exchangeratesapi.io/latest?base=';
+url=url+input;
+//alert(url);
+//console.log(input);
+
 const app = document.getElementById('root');
 
-const container = document.createElement('div');
-container.setAttribute('class', 'container');
+const container = document.getElementById('cont');
+container.innerHTML = "";
+// container.setAttribute('class', 'container');
 
-app.appendChild(container);
+// app.appendChild(container);
+
 
 var request = new XMLHttpRequest();
-var url='https://api.exchangeratesapi.io/latest?base=INR';
-var basevalue=document.getElementsByName('basevalue').value;
-alert(basevalue);
+
 request.open('GET', url, true);
 request.onload = function () {
 
@@ -19,22 +28,22 @@ request.onload = function () {
   var data = JSON.parse(this.response);
   if (request.status >= 200 && request.status < 400) {
     
-    const card1 = document.getElementById('base');
-    const p = document.createElement('h3')
+    var card1 = document.getElementById('base');
+    var p = document.getElementById('heading')
     p.textContent = data.base;
     p.setAttribute('align', 'center');
-    card1.appendChild(p);
+    //card1.appendChild(p);
 
     for (let [key, value] of Object.entries(data.rates)) {
       console.log(`key=${key} value=${value}`)
 
-      const card = document.createElement('div');
+      var card = document.createElement('div');
       card.setAttribute('class', 'card');
 
-      const h1 = document.createElement('h1');
+      var h1 = document.createElement('h1');
       h1.textContent = key;
 
-      const p = document.createElement('p');
+      var p = document.createElement('p');
       p.textContent = value;
       p.setAttribute('align', 'center');
 
@@ -49,8 +58,15 @@ request.onload = function () {
     app.appendChild(errorMessage);
   }
 }
-
 request.send();
+window.setInterval('refresh()',5000);
+}
+function refresh(){
+  console.log("hi");
+  document.getElementById('root').removeChild();
+
+temp();
+}
 
 /*document.addEventListener('DOMContentLoaded', function() {
     var elems = document.querySelectorAll('select');
