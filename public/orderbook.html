@@ -7,15 +7,45 @@
     <title>FX-Trading-Simulator</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/table.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
 </head>
 
 <body>
-    <div class="logo-container">
-        <i class="material-icons right">book</i>
+    <div id="wrapper">
+        <h1>Order Book (Sell)</h1>
+        <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th><span>Base Currency</span></th>
+                    <th><span>Quote Currency</span></th>
+                    <th><span>Quantity</span></th>
+                    <th><span>Price</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
     </div>
+    </br></br>
+    <div id="wrapper">
+        <h1>Order Book (Buy)</h1>
+        <table id="keywords" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th><span>Base Currency</span></th>
+                    <th><span>Quote Currency</span></th>
+                    <th><span>Quantity</span></th>
+                    <th><span>Price</span></th>
+                </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+
+    <script src="./js/table.js"></script>
 </body>
 
 </html>
