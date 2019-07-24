@@ -1,71 +1,77 @@
 // uncomment line below to register offline cache service worker 
 // navigator.serviceWorker.register('../serviceworker.js');
 
-var input="";
-var url="";
+var input = "";
+var url = "";
 
-function temp(){
-input=document.getElementById("basevalue").value; url='https://api.exchangeratesapi.io/latest?base=';
-url=url+input;
-//alert(url);
-//console.log(input);
+function temp() {
+  input = document.getElementById("basevalue").value; url = 'https://api.exchangeratesapi.io/latest?base=';
+  url = url + input;
+  //alert(url);
+  //console.log(input);
 
-const app = document.getElementById('root');
+  const app = document.getElementById('root');
 
-const container = document.getElementById('cont');
-container.innerHTML = "";
-// container.setAttribute('class', 'container');
+  const container = document.getElementById('cont');
+  container.innerHTML = "";
+  // container.setAttribute('class', 'container');
 
-// app.appendChild(container);
+  // app.appendChild(container);
 
 
-var request = new XMLHttpRequest();
+  var request = new XMLHttpRequest();
 
-request.open('GET', url, true);
-request.onload = function () {
+  request.open('GET', url, true);
+  request.onload = function () {
 
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
-  if (request.status >= 200 && request.status < 400) {
-    
-    var card1 = document.getElementById('base');
-    var p = document.getElementById('heading')
-    p.textContent = data.base;
-    p.setAttribute('align', 'center');
-    //card1.appendChild(p);
+    // Begin accessing JSON data here
+    var data = JSON.parse(this.response);
+    if (request.status >= 200 && request.status < 400) {
 
-    for (let [key, value] of Object.entries(data.rates)) {
-      console.log(`key=${key} value=${value}`)
-
-      var card = document.createElement('div');
-      card.setAttribute('class', 'card');
-
-      var h1 = document.createElement('h1');
-      h1.textContent = key;
-
-      var p = document.createElement('p');
-      p.textContent = value;
+      var card1 = document.getElementById('base');
+      var p = document.getElementById('heading')
+      p.textContent = data.base;
       p.setAttribute('align', 'center');
 
-      container.appendChild(card);
-      card.appendChild(h1);
-      card.appendChild(p);
+      var date = document.getElementById('date');
+      var datep = document.getElementById('date_time');
+      datep.textContent = new Date();
 
+      var x = document.getElementById("cont")
+      x.innerHTML = "";
+
+      for (let [key, value] of Object.entries(data.rates)) {
+        console.log(`key=${key} value=${value}`)
+
+        var card = document.createElement('div');
+        card.setAttribute('class', 'card');
+
+        var h1 = document.createElement('h1');
+        h1.textContent = key;
+
+        var p = document.createElement('p');
+        p.textContent = value;
+        p.setAttribute('align', 'center');
+
+        container.appendChild(card);
+        card.appendChild(h1);
+        card.appendChild(p);
+
+      }
+    } else {
+      const errorMessage = document.createElement('marquee');
+      errorMessage.textContent = `Gah, it's not working!`;
+      app.appendChild(errorMessage);
     }
-  } else {
-    const errorMessage = document.createElement('marquee');
-    errorMessage.textContent = `Gah, it's not working!`;
-    app.appendChild(errorMessage);
   }
+  request.send();
+  window.setInterval('refresh()', 5000);
 }
-request.send();
-window.setInterval('refresh()',5000);
-}
-function refresh(){
+function refresh() {
   console.log("hi");
-  document.getElementById('root').removeChild();
-
-temp();
+  var x = document.getElementById("cont")
+  x.innerHTML = "";
+  temp();
 }
 
 /*document.addEventListener('DOMContentLoaded', function() {

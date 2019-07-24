@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>FX-Trading-Simulator</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+</head>
+
+<body>
+    <div class="logo-container">
+        <img src="assets/logo.svg">
+    </div>
+    <div class="row">
+        <form class="col s12">
+            <div class="row">
+                <div class="input-field col s5">
+                    <i class="material-icons prefix">attach_money</i>
+                    <input id="base-currency" type="text" class="validate">
+                    <label for="base-currency">Enter the Base Currency</label>
+                </div>
+                <div class="input-field col s5">
+                    <i class="material-icons prefix">local_grocery_store</i>
+                    <input id="quote-currency" type="text" class="validate">
+                    <label for="quote-currency">Enter the Quote Currency</label>
+                </div>
+                <div class="input-field col s2">
+                    <button class="btn waves-effect waves-light" type="button" onclick="getData()">Submit</button>
+                </div>
+            </div>
+            <div id="base" class="card">
+                <h1>Current Rate</h1>
+                <h3 id='heading'></h3>
+            </div>
+        </form>
+        <form accept="#">
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" id="buy" type="radio" />
+                    <span>Buy</span>
+                </label>
+            </p>
+            <p>
+                <label>
+                    <input class="with-gap" name="group1" id="sell" type="radio" />
+                    <span>Sell</span>
+                </label>
+            </p>
+        </form>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s10">
+                        <i class="material-icons prefix">add_circle</i>
+                        <input id="quantity" type="number" class="validate">
+                        <label for="quantity">Enter the quantity</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <button class="btn waves-effect waves-light" type="button" onclick="storeData()">Submit
+                            <i class="material-icons right">local_grocery_store</i>
+                        </button>
+                    </div>
+                </div>
+        </div>
+        <script src="./jquery.js"></script>
+        <script src="./js/bookTrade.js"></script>
+        <script type="text/javascript" src="./js/materialize.min.js"></script>
+</body>
+
+</html>
