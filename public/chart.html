@@ -5,7 +5,7 @@
    <title>Forex visualization</title>
    <style>
    body {
-    background: url("./assets/BG.jpg");
+    background: url("BG.jpg");
     background-size: 1600px 800px;
     background-repeat: no-repeat;
    }
@@ -19,6 +19,7 @@
    button {
       border-radius: 15px;
       font-size: 17px;
+
    }
    </style>
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js">
@@ -36,6 +37,7 @@
                Quote Currency&nbsp&nbsp&nbsp<input type="search"  id="quotevalue">&nbsp&nbsp&nbsp&nbsp
                From Date&nbsp&nbsp&nbsp<input type="text" placeholder="YYYY-MM-DD" id="from">&nbsp&nbsp&nbsp&nbsp
                To Date&nbsp&nbsp&nbsp&nbsp<input type="text"  placeholder="YYYY-MM-DD"  id="to">&nbsp&nbsp&nbsp&nbsp
+               
                <button type="button" onclick="drawChart()">Search</button></p><br><br><br>
          </form>
    </div>
@@ -44,11 +46,12 @@
    <script language="JavaScript">
       function drawChart() {
          // Define the chart to be drawn.
+         //const maps=new Map();
          var base=document.getElementById("basevalue").value;
          var quote=document.getElementById("quotevalue").value;
          var from=document.getElementById("from").value;
          var to=document.getElementById("to").value;
-
+         
         
          url = 'https://api.exchangeratesapi.io/history?start_at='+from+'&end_at='+to+'&base='+base+'&symbols='+quote;
          console.log(url);
@@ -63,14 +66,16 @@
 
                var inrlist = [];
                var datelist=[];
+              
                for (let [key, value] of Object.entries(data.rates)) {
                   console.log(`key=${key} value=${value[quote]}`);
                   datelist.push(key);
-                  datelist.sort();
+                  //datelist.sort();
                   inrlist.push(value[quote]);
+                 // maps.set(key,value[quote]);
                }
-
-               var data = new google.visualization.DataTable();
+         //console.log(maps.size);
+         var data = new google.visualization.DataTable();
          data.addColumn('string', 'Date');
          data.addColumn('number', base+'/'+quote);
          for(var i=0;i<inrlist.length;i++)
@@ -94,6 +99,7 @@
          };
 
          // Instantiate and draw the chart.
+        
          var chart = new google.visualization.LineChart(document.getElementById('container'));
          chart.draw(data, options);
 
